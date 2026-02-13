@@ -1,6 +1,9 @@
 # Fiji-TNT-Counting
 A Python script to allow for blind, standardized TNT counting in Fiji/ImageJ. 
 
+# Installation
+
+Download the provided TNT-Plugin_plgs.py file. Rename it if you'd like, but leave the _plgs.py ending. Drag this file directly into your /Fiji/Plugins folder on your computer. Restart Fiji; the plugin should be in your plugins bar.
 
 # Outputs 
 After analysis (clicking exit/continue), a row will be added to an automatically created/saved csv file in the folder you are analyzing. 
