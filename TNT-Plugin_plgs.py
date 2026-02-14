@@ -20,8 +20,6 @@ from javax.swing import JFrame, ButtonGroup, JPanel, JCheckBox, JLabel, JButton,
 from java.lang import Thread
 import csv
 
-# This ensures ROIs appear on all Z-slices by default
-
 Prefs.showAllSliceOnly = False
 RoiManager.restoreCentered(False)
 Prefs.useNamesAsLabels = False
