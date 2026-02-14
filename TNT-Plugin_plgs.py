@@ -150,11 +150,11 @@ class PointUpdateListener(MouseAdapter):
 
 
 
-    # FIXED: Ensure this is indented inside the class
+
     def mousePressed(self, event):
         EventQueue.invokeLater(lambda: self.update_count())
         
-    # FIXED: Ensure this is indented inside the class
+
     def remove(self):
         self.canvas.removeMouseListener(self)
         #print("Listener removed.")
@@ -672,7 +672,7 @@ def processFile(cfile, globCount, n, cellnum, analyzedList, files, contFolder):
         if imp.getNChannels() > 1:
             imp = CompositeImage(imp, CompositeImage.COMPOSITE)
 
-        zProjDict = {"None":None, "Average intensity":"avg", "Max Intensity":"max", "Min Intensity":"min", "Sum Slices":"sum", "Standard Deviation":"sd","Median":"median"}
+        zProjDict = {"None":None, "Average Intensity":"avg", "Max Intensity":"max", "Min Intensity":"min", "Sum Slices":"sum", "Standard Deviation":"sd","Median":"median"}
         zProj = zProjDict[num_cells_res[1]]
         print(zProj, "ZPROJ")
         if (zProj):
