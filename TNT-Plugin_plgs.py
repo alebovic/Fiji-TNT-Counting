@@ -20,6 +20,8 @@ from javax.swing import JFrame, ButtonGroup, JPanel, JCheckBox, JLabel, JButton,
 from java.lang import Thread
 import csv
 
+# This ensures ROIs appear on all Z-slices by default
+
 Prefs.showAllSliceOnly = False
 RoiManager.restoreCentered(False)
 Prefs.useNamesAsLabels = False
@@ -148,11 +150,11 @@ class PointUpdateListener(MouseAdapter):
 
 
 
-
+    # FIXED: Ensure this is indented inside the class
     def mousePressed(self, event):
         EventQueue.invokeLater(lambda: self.update_count())
         
-
+    # FIXED: Ensure this is indented inside the class
     def remove(self):
         self.canvas.removeMouseListener(self)
         #print("Listener removed.")
@@ -328,7 +330,11 @@ class continueProcessing(ActionListener):
         
 
         #Images,	Cells (Total),	TNT-Connected Cells,	Cells Types	Connected Cell Subtypes	Connection Matrix
-        results = [currentFile, len(cellDict.keys()), connectedCells, float(int(connectedCells)/len(cellDict.keys())), cellTypes, connectedTypes, printMatrix, cellDict, lineCoords]
+        try:
+        	perCon = float(int(connectedCells)/len(cellDict.keys()))
+        except:
+        	perCon = 0
+        results = [currentFile, len(cellDict.keys()), connectedCells, perCon, cellTypes, connectedTypes, printMatrix, cellDict, lineCoords]
         saveToCSV(self.folder, currentFile, results, self.cellNum)
         
         
@@ -670,7 +676,7 @@ def processFile(cfile, globCount, n, cellnum, analyzedList, files, contFolder):
         if imp.getNChannels() > 1:
             imp = CompositeImage(imp, CompositeImage.COMPOSITE)
 
-        zProjDict = {"None":None, "Average Intensity":"avg", "Max Intensity":"max", "Min Intensity":"min", "Sum Slices":"sum", "Standard Deviation":"sd","Median":"median"}
+        zProjDict = {"None":None, "Average intensity":"avg", "Max Intensity":"max", "Min Intensity":"min", "Sum Slices":"sum", "Standard Deviation":"sd","Median":"median"}
         zProj = zProjDict[num_cells_res[1]]
         print(zProj, "ZPROJ")
         if (zProj):
